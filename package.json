@@ -6,7 +6,7 @@
   "workspaces": ["server", "client"],
   "scripts": {
     "dev": "concurrently -k -n api,web -c green,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
-    "build": "npm run build -w client",
+    "build": "npm run build -w client && node -e \"const f=require('fs');f.rmSync('dist',{recursive:true,force:true});f.cpSync('client/dist','dist',{recursive:true})\"",
     "start": "npm run start -w server",
     "typecheck": "npm run typecheck -w server && npm run typecheck -w client",
     "reset-db": "npm run reset-db -w server"
